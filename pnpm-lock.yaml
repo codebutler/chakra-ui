@@ -1590,6 +1590,7 @@ importers:
       '@chakra-ui/hooks': workspace:*
       '@chakra-ui/layout': workspace:*
       '@chakra-ui/portal': workspace:*
+      '@chakra-ui/react-context': workspace:*
       '@chakra-ui/react-use-timeout': workspace:*
       '@chakra-ui/react-use-update-effect': workspace:*
       '@chakra-ui/shared-utils': workspace:*
@@ -1604,6 +1605,7 @@ importers:
       '@chakra-ui/alert': link:../alert
       '@chakra-ui/close-button': link:../close-button
       '@chakra-ui/portal': link:../portal
+      '@chakra-ui/react-context': link:../../hooks/context
       '@chakra-ui/react-use-timeout': link:../../hooks/use-timeout
       '@chakra-ui/react-use-update-effect': link:../../hooks/use-update-effect
       '@chakra-ui/styled-system': link:../styled-system

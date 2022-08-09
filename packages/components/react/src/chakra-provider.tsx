@@ -21,7 +21,7 @@ export function ChakraProvider({
   return (
     <BaseChakraProvider theme={theme} {...restProps}>
       {children}
-      <ToastProvider {...toastOptions} />
+      <ToastProvider {...toastOptions}>{children}</ToastProvider>
     </BaseChakraProvider>
   )
 }

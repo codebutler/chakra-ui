@@ -11,6 +11,7 @@ import type { UseToastOptions } from "./use-toast"
 import { toastStore } from "./toast.store"
 import { getToastListStyle } from "./toast.utils"
 import { useSyncExternalStore } from "react"
+import { createContext } from "@chakra-ui/react-context"
 
 export interface ToastMethods {
   /**
@@ -89,6 +90,18 @@ export type ToastProviderProps = React.PropsWithChildren<{
   portalProps?: Pick<PortalProps, "appendToParentPortal" | "containerRef">
 }>
 
+export interface ToastDataContext {
+  topLevelDefaultOptions: UseToastOptions | undefined
+}
+
+/**
+ * Passes default options down to be used by toast creator function
+ */
+export const [ToastDataContext, useToastDataContext] =
+  createContext<ToastDataContext>({
+    name: `ToastDefaultOptionsContext`,
+  })
+
 /**
  * Manages the creation, and removal of toasts
  * across all corners ("top", "bottom", etc.)
@@ -105,6 +118,7 @@ export const ToastProvider = (props: ToastProviderProps) => {
     motionVariants,
     component: Component = ToastComponent,
     portalProps,
+    defaultOptions,
   } = props
 
   const stateKeys = Object.keys(state) as Array<keyof typeof state>
@@ -134,7 +148,9 @@ export const ToastProvider = (props: ToastProviderProps) => {
 
   return (
     <>
-      {children}
+      <ToastDataContext value={{ topLevelDefaultOptions: defaultOptions }}>
+        {children}
+      </ToastDataContext>
       <Portal {...portalProps}>{toastList}</Portal>
     </>
   )
